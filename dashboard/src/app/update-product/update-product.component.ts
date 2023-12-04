@@ -8,7 +8,10 @@ import { ActivatedRoute, Data } from '@angular/router';
   styleUrls: ['./update-product.component.css'],
 })
 export class UpdateProductComponent {
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+    this.selectedCategoryID = this.product.categoryID;
+    this.updateSelectedCategoryName();
+  }
   productId = '';
 
   ngOnInit() {
@@ -153,4 +156,23 @@ export class UpdateProductComponent {
     );
   }
 
+
+  // 
+
+  selectedCategoryID: string='';
+  selectedCategoryName: string='';
+
+  // Assuming productCategories is an array of category objects
+
+
+
+  updateSelectedCategoryName() {
+    const selectedCategory = this.productCategories.find(category => category._id === this.selectedCategoryID);
+    if (selectedCategory) {
+      this.selectedCategoryName = selectedCategory.name;
+    } else {
+      this.selectedCategoryName = ''; // Handle if category is not found
+    }
+  }
+  // 
 }

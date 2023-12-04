@@ -6,7 +6,8 @@
   <input type="number" id="price" ngModel="product.price" [value]="product.price" name="price" required>
 
   <label for="description">Description:</label>
-  <textarea id="description" ngModel="product.description" name="description" [value]="product.description" required></textarea>
+  <textarea id="description" ngModel="product.description" name="description" [value]="product.description"
+    required></textarea>
 
   <label for="size">Size:</label>
   <input type="text" id="size" ngModel="product.size" name="size" [value]="product.size" required>
@@ -21,8 +22,8 @@
   <input type="text" id="images" ngModel="product.images" [value]="product.images" name="images" required>
 
   <label for="categoryID">Category :</label>
-  <select name="categoryID" id="categoryID">
-    <option [value]="product.categoryID" disabled selected>D</option>
+  <label for="categoryID">Category :</label>
+  <select name="categoryID" id="categoryID" ngModel="selectedCategoryID">
     <option *ngFor="let category of productCategories" [value]="category._id">
       {{ category.name }}
     </option>
@@ -32,10 +33,12 @@
   <input type="text" id="couponCode" ngModel="product.coupon.code" name="couponCode" [value]="product.coupon.code">
 
   <label for="discountPercentage">Discount Percentage:</label>
-  <input type="number" id="discountPercentage" ngModel="product.coupon.discountPercentage" [value]="product.coupon.discountPercentage" name="discountPercentage">
+  <input type="number" id="discountPercentage" ngModel="product.coupon.discountPercentage"
+    [value]="product.coupon.discountPercentage" name="discountPercentage">
 
   <label for="expirationDate">Expiration Date:</label>
-  <input type="date" id="expirationDate" ngModel="product.coupon.expirationDate" name="expirationDate" [value]="product.coupon.expirationDate">
+  <input type="date" id="expirationDate" ngModel="product.coupon.expirationDate" name="expirationDate"
+    [value]="product.coupon.expirationDate">
 
   <button type="submit" (click)="onSubmit($event , form)">Create Product</button>
 
