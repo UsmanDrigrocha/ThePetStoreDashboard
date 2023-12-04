@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); /* Imported Font */
-@import '~@fortawesome/fontawesome-free/css/all.css'; /* Imported Font Awesome */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* Imported Font */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+/* Imported Font Awesome */
 
 * {
     margin: 0;
@@ -33,6 +35,14 @@ app-forget-password {
 }
 
 app-create-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #567086;
+}
+
+
+app-update-product {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,45 +1,42 @@
-<!-- <form #form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" ngModel="product.name" name="name" required>
+<form #form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" ngModel="product.name" name="name" [value]="product.name" required>
 
-    <label for="price">Price:</label>
-    <input type="number" id="price" ngModel="product.price" name="price" required>
+  <label for="price">Price:</label>
+  <input type="number" id="price" ngModel="product.price" [value]="product.price" name="price" required>
 
-    <label for="description">Description:</label>
-    <textarea id="description" ngModel="product.description" name="description" required></textarea>
+  <label for="description">Description:</label>
+  <textarea id="description" ngModel="product.description" name="description" [value]="product.description" required></textarea>
 
-    <label for="size">Size:</label>
-    <input type="text" id="size" ngModel="product.size" name="size" required>
+  <label for="size">Size:</label>
+  <input type="text" id="size" ngModel="product.size" name="size" [value]="product.size" required>
 
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" ngModel="product.quantity" name="quantity" required>
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" ngModel="product.quantity" [value]="product.quantity" name="quantity" required>
 
-    <label for="animal">Animal:</label>
-    <input type="text" id="animal" ngModel="product.animal" name="animal" required>
+  <label for="animal">Animal:</label>
+  <input type="text" id="animal" ngModel="product.animal" [value]="product.animal" name="animal" required>
 
-    <label for="images">Images:</label>
-    <input type="text" id="images" ngModel="product.images" name="images" required>
+  <label for="images">Images:</label>
+  <input type="text" id="images" ngModel="product.images" [value]="product.images" name="images" required>
 
-    <label for="categoryID">Category :</label>
-    <select name="categoryID" id="categoryID">
-        <option value="" disabled selected>Select a category</option>
-        <option *ngFor="let category of productCategories" [value]="category._id">
-          {{ category.name }}
-        </option>
-      </select>
-      
-    
+  <label for="categoryID">Category :</label>
+  <select name="categoryID" id="categoryID">
+    <option [value]="product.categoryID" disabled selected>D</option>
+    <option *ngFor="let category of productCategories" [value]="category._id">
+      {{ category.name }}
+    </option>
+  </select>
 
+  <label for="couponCode">Coupon Code:</label>
+  <input type="text" id="couponCode" ngModel="product.coupon.code" name="couponCode" [value]="product.coupon.code">
 
-    <label for="couponCode">Coupon Code:</label>
-    <input type="text" id="couponCode" ngModel="product.coupon.code" name="couponCode" value="">
+  <label for="discountPercentage">Discount Percentage:</label>
+  <input type="number" id="discountPercentage" ngModel="product.coupon.discountPercentage" [value]="product.coupon.discountPercentage" name="discountPercentage">
 
-    <label for="discountPercentage">Discount Percentage:</label>
-    <input type="number" id="discountPercentage" ngModel="product.coupon.discountPercentage" name="discountPercentage">
+  <label for="expirationDate">Expiration Date:</label>
+  <input type="date" id="expirationDate" ngModel="product.coupon.expirationDate" name="expirationDate" [value]="product.coupon.expirationDate">
 
-    <label for="expirationDate">Expiration Date:</label>
-    <input type="date" id="expirationDate" ngModel="product.coupon.expirationDate" name="expirationDate">
+  <button type="submit" (click)="onSubmit($event , form)">Create Product</button>
 
-    <button type="submit" (click)="onSubmit($event , form)">Create Product</button>
-
-</form> -->
+</form>

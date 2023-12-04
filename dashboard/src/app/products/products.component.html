@@ -6,7 +6,7 @@
                     <div class="headingProducts">Products</div>
                     <div class="create">
                         <span id="createButton" (click)="redirectToCreatePage()">Create Product <i
-                                class="fas fa-edit"></i></span>
+                                class="fas fa-edit" ></i></span>
                     </div>
                 </th>
 
@@ -23,7 +23,7 @@
                     <!-- <td>{{ product.categoryID }}</td> -->
                     <td>{{ product.price }}</td>
                     <td>
-                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-edit" (click)="redirectToEditPage(product._id)"></i>
                         <span>
                             <i (click)="deleteProduct(product._id)" class="fas fa-trash-alt"></i>
                         </span>

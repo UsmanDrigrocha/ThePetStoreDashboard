@@ -20,6 +20,9 @@ export class ProductsComponent {
     this.fetchProducts();
   }
 
+  // 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
+
+  
   fetchProducts(): void {
     const headers = this.getHeaders(); 
     this.http
@@ -73,5 +76,10 @@ export class ProductsComponent {
 
   redirectToCreatePage(){
     this.router.navigate(['/create-product']);
+  }
+
+
+  redirectToEditPage(productId: string) {
+    this.router.navigate(['/update-product', productId]);
   }
 }
