@@ -1,0 +1,64 @@
+<body>
+    <div class="productsMainDiv">
+        <div class="products">
+            <table>
+                <th colspan="6">
+                    <div class="headingProducts">Products</div>
+                    <div class="create">
+                        <span id="createButton" (click)="redirectToCreatePage()">Create Product <i
+                                class="fas fa-edit"></i></span>
+                    </div>
+                </th>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <!-- <th>Category</th> -->
+                    <th>Price</th>
+                    <th>---</th>
+                </tr>
+                <tr *ngFor="let product of products">
+                    <td>{{ product.name }}</td>
+                    <td> {{ product.quantity }} </td>
+                    <!-- <td>{{ product.categoryID }}</td> -->
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <i class="fas fa-edit"></i>
+                        <span>
+                            <i (click)="deleteProduct(product._id)" class="fas fa-trash-alt"></i>
+                        </span>
+
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div class="productsCategories">
+            <table border="1">
+                <th colspan="4">Categories</th>
+                <tr>
+                    <th>Name</th>
+                    <th>Delete</th>
+                </tr>
+
+                <tr>
+                    <td>Category 1</td>
+                    <td> <i class="fas fa-trash-alt"></i></td>
+                </tr>
+
+                <tr>
+                    <td>Category 1</td>
+                    <td> <i class="fas fa-trash-alt"></i></td>
+                </tr>
+
+                <tr>
+                    <td>Category 1</td>
+                    <td> <i class="fas fa-trash-alt"></i></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</body>

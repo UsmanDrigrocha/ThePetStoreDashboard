@@ -1,0 +1,61 @@
+form {
+    background-color: #4e657a;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 26rem;
+    width: 26rem;
+    padding: 2rem;
+    gap: 6px;
+    color: white;
+    /* border: 1px solid black; */
+}
+
+
+form input {
+    border: none;
+    outline: none;
+    padding: 13px;
+    width: 100%;
+    background-color: #6f7c8f;
+    color: white;
+}
+
+form a,
+#login {
+    border: none;
+    padding: 15px;
+    background-color: orange;
+    color: white;
+    margin-top: 1rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.email,
+.password {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form span {
+    font-size: 14px;
+}
+
+button:disabled {
+    visibility: hidden;
+    background-color: transparent !important;
+    color: transparent !important;
+}

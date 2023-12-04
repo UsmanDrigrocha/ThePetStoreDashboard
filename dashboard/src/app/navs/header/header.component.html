@@ -1,0 +1,16 @@
+<nav>
+    <h2>Admin Dashboard</h2>
+    <div [class.resheaderLinks]="isMenuOpen" class="headerLinks">
+      <a routerLink="dashboard">Dashboard</a>
+      <a routerLink="products">Products</a>
+      <a routerLink="users">Accounts</a>
+      <a routerLink="login">Login</a>
+    </div>
+  
+    <div class="hamburger" [class.openHam]="isMenuOpen" (click)="changeClass()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,16 @@
+<form  ngForm="ngForm" #loginForm>
+    <h3>Welcome to Dashboard, Login</h3>
+
+    <label for="email" class="email">Email</label>
+    <input type="email" name="email" id="email" #emailBox ngModel
+        required>
+
+    <label for="password" class="password">password</label>
+    <input type="password" id="password"  name="password" ngModel
+        required #passwordBox ngModel>
+
+
+    <button type="submit" id="login" (click)="login(loginForm, $event)" >Login</button>
+
+    <a routerLink="/forget">FORGET YOUR PASSWORD</a>
+</form>
