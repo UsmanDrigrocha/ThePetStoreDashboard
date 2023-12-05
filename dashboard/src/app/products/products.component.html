@@ -6,7 +6,7 @@
                     <div class="headingProducts">Products</div>
                     <div class="create">
                         <span id="createButton" (click)="redirectToCreatePage()">Create Product <i
-                                class="fas fa-edit" ></i></span>
+                                class="fas fa-edit"></i></span>
                     </div>
                 </th>
 
@@ -36,6 +36,10 @@
 
 
         <div class="productsCategories">
+            <div class="create">
+                <span id="createButton" (click)="redirectToCreateCategoryPage()">Create Category <i
+                        class="fas fa-edit"></i></span>
+            </div>
             <table border="1">
                 <th colspan="4">Categories</th>
                 <tr>
@@ -43,20 +47,11 @@
                     <th>Delete</th>
                 </tr>
 
-                <tr>
-                    <td>Category 1</td>
-                    <td> <i class="fas fa-trash-alt"></i></td>
+                <tr *ngFor="let category of productCategories">
+                    <td>{{category.name}}</td>
+                    <td> <i class="fas fa-trash-alt" (click)="deleteCategory(category._id)"></i></td>
                 </tr>
 
-                <tr>
-                    <td>Category 1</td>
-                    <td> <i class="fas fa-trash-alt"></i></td>
-                </tr>
-
-                <tr>
-                    <td>Category 1</td>
-                    <td> <i class="fas fa-trash-alt"></i></td>
-                </tr>
 
             </table>
         </div>

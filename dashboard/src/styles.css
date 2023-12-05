@@ -48,3 +48,11 @@ app-update-product {
     align-items: center;
     background-color: #567086;
 }
+
+app-create-category{
+    display: flex;
+    background-color: #567086;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

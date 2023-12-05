@@ -18,6 +18,7 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.fetchProducts();
+    this.fetchCategories();
   }
 
   // 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
@@ -81,5 +82,56 @@ export class ProductsComponent {
 
   redirectToEditPage(productId: string) {
     this.router.navigate(['/update-product', productId]);
+  }
+
+
+  productCategories: any[] = [];
+
+
+  fetchCategories(): void {
+    const headers = this.getHeaders(); 
+    this.http
+      .get<any>(
+        'https://the-pet-store-backend.vercel.app/api/admin/getProductCategories',{headers}
+      )
+      .subscribe(
+        (data) => {
+          this.productCategories=data;
+          console.log('API cateories:', this.productCategories);
+          this.cdr.detectChanges();
+        },
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
+  }
+
+
+  deleteCategoryURL="https://the-pet-store-backend.vercel.app/api/admin/deleteCategory"
+  deleteCategory(val:any):any{
+    console.log(val)
+    if (confirm('Are you sure you want to delete this Category?')) {
+      console.log('getting headers');
+      const url = `${this.deleteCategoryURL}/${val}`;
+      console.log('Deleting : ', val, 'URL', url);
+  
+      const headers = this.getHeaders(); // Retrieve headers
+      return this.http.delete(url, { headers }).subscribe(
+        (response) => {
+          alert('Category Deleted Successfully !')
+          window.location.reload();
+          return;
+        },
+        (error) => {
+          alert("Error Deleting Category");
+          window.location.reload();
+        }
+      );
+    }
+
+  }
+
+  redirectToCreateCategoryPage(){
+    this.router.navigate(['/create-category']); 
   }
 }

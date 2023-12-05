@@ -12,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     UsersComponent,
     CreateProductComponent,
     UpdateProductComponent,
+    CreateCategoryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
