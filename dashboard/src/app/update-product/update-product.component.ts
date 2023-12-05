@@ -1,6 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-product',
@@ -8,7 +12,11 @@ import { ActivatedRoute, Data } from '@angular/router';
   styleUrls: ['./update-product.component.css'],
 })
 export class UpdateProductComponent {
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.selectedCategoryID = this.product.categoryID;
     this.updateSelectedCategoryName();
   }
@@ -20,7 +28,7 @@ export class UpdateProductComponent {
       const productId = params['id'];
       this.productId = productId;
       this.getProductValues();
-      this.getProductCategories()
+      this.getProductCategories();
       // Now you have access to the product ID, you can fetch the corresponding product data for editing
       // Fetch data or perform necessary operations using this productId
     });
@@ -42,7 +50,7 @@ export class UpdateProductComponent {
     },
   };
 
-  productObject:any={
+  productObject: any = {
     name: '',
     price: null,
     description: '',
@@ -56,7 +64,7 @@ export class UpdateProductComponent {
       discountPercentage: 0,
       expirationDate: Date.now(),
     },
-  }
+  };
   onSubmit(e: Event, form: any) {
     e.preventDefault();
     this.productObject.images[0] = form.images.value;
@@ -91,7 +99,7 @@ export class UpdateProductComponent {
     ) {
       return alert('Enter All Required Fields !');
     } else {
-      // this.updateProduct();
+      this.updateProduct();
     }
   }
 
@@ -122,7 +130,6 @@ export class UpdateProductComponent {
         this.product.coupon.discountPercentage =
           data.findProduct.coupon.discountPercentage;
 
-
         const dateString = data.findProduct.coupon.expirationDate;
         const date = new Date(dateString);
 
@@ -130,14 +137,14 @@ export class UpdateProductComponent {
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 to month since it's zero-based, and padding with '0'
         const day = String(date.getDate()).padStart(2, '0'); // Padding with '0'
         const formattedDate = `${year}-${month}-${day}`;
-        this.product.coupon.expirationDate =formattedDate;
+        this.product.coupon.expirationDate = formattedDate;
         console.log(formattedDate); // Output: 2023-12-04
       });
   }
 
   getProductCategoriesURL =
-  'https://the-pet-store-backend.vercel.app/api/admin/getProductCategories';
-  
+    'https://the-pet-store-backend.vercel.app/api/admin/getProductCategories';
+
   productCategories: any[] = [];
   getProductCategories(): any {
     const accessToken = localStorage.getItem('token');
@@ -148,7 +155,7 @@ export class UpdateProductComponent {
     return this.http.get(this.getProductCategoriesURL, { headers }).subscribe(
       (data: any) => {
         this.productCategories = data;
-        console.log('Product Categories:',this.productCategories );
+        console.log('Product Categories:', this.productCategories);
       },
       (error) => {
         console.error('Error fetching product categories:', error);
@@ -156,23 +163,55 @@ export class UpdateProductComponent {
     );
   }
 
+  //
 
-  // 
-
-  selectedCategoryID: string='';
-  selectedCategoryName: string='';
+  selectedCategoryID: string = '';
+  selectedCategoryName: string = '';
 
   // Assuming productCategories is an array of category objects
 
-
-
   updateSelectedCategoryName() {
-    const selectedCategory = this.productCategories.find(category => category._id === this.selectedCategoryID);
+    const selectedCategory = this.productCategories.find(
+      (category) => category._id === this.selectedCategoryID
+    );
     if (selectedCategory) {
       this.selectedCategoryName = selectedCategory.name;
     } else {
       this.selectedCategoryName = ''; // Handle if category is not found
     }
   }
-  // 
+
+  updateProduct() {
+    const accessToken = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    this.http
+      .put<any>(
+        `https://the-pet-store-backend.vercel.app/api/admin/updateProduct/${this.productId}`,
+        this.productObject,
+        { headers }
+      )
+      .subscribe({
+        next: (data) => {
+          console.log('Product Updated INTO DB:', data.message);
+          console.log('Product Details:', data);
+        },
+        error: (error) => {
+          console.error('Error updating product:', error);
+
+          if (error instanceof HttpErrorResponse) {
+            console.error('Full error response:', error);
+          }
+        },
+        complete: () => {
+          this.router.navigate(['/products']);
+          console.log('Product Updated !');
+        },
+      });
+  }
+  //
 }
