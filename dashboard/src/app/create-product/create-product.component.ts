@@ -20,11 +20,10 @@ export class CreateProductComponent {
     this.getProductCategories();
   }
 
-  
   getHeaders(): HttpHeaders {
     const accessToken = localStorage.getItem('token');
     console.log(accessToken);
-    
+
     const headers = new HttpHeaders({
       Authorization: `Bearer ${accessToken}`,
     });
@@ -32,10 +31,10 @@ export class CreateProductComponent {
     // Return the headers
     return headers;
   }
-  
+
   getProductCategoriesURL =
-  'https://the-pet-store-backend.vercel.app/api/admin/getProductCategories';
-  
+    'https://the-pet-store-backend.vercel.app/api/admin/getProductCategories';
+
   productCategories: any[] = [];
   getProductCategories(): any {
     const accessToken = localStorage.getItem('token');
@@ -46,7 +45,7 @@ export class CreateProductComponent {
     return this.http.get(this.getProductCategoriesURL, { headers }).subscribe(
       (data: any) => {
         this.productCategories = data;
-        console.log('Product Categories:',this.productCategories );
+        console.log('Product Categories:', this.productCategories);
       },
       (error) => {
         console.error('Error fetching product categories:', error);
@@ -105,7 +104,8 @@ export class CreateProductComponent {
 
   onSubmit(e: Event, form: any) {
     e.preventDefault();
-    this.product.images[0] = form.images.value;
+    // this.product.images[0] = form.images.value;
+    // this.product.images.push(this.imageUrl-'http://localhost:8080/api/user/uploadImage')
     // this.product.image=['test']
     this.product.name = form.name.value;
     this.product.price = form.price.value;
@@ -142,28 +142,65 @@ export class CreateProductComponent {
     }
   }
 
-  // -------------------- Upload Image ------------------------
-  // private imageUploadApiURL = 'https://the-pet-store-backend.vercel.app/api/user/uploadImage';
-  
   private imageUploadApiURL = 'http://localhost:8080/api/user/uploadImage';
 
-    onFileChange(event: any): void {
-      const file = event.target.files[0];
-  
-      if (file) {
-        console.log(file);
-  
-        this.http.post(this.imageUploadApiURL, file).subscribe(
-          (response) => {
-            console.log('Image uploaded successfully', response);
-            // Handle success
-          },
-          (error) => {
-            console.error('Error uploading image', error);
-            // Handle error
-          }
-        );
-      }
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      console.log(file);
+
+      this.http.post(this.imageUploadApiURL, file).subscribe(
+        (response) => {
+          console.log('Image uploaded successfully', response);
+          // Handle success
+        },
+        (error) => {
+          console.error('Error uploading image', error);
+          // Handle error
+        }
+      );
     }
- 
+  }
+
+  // ------ Upload Image  ------
+  imageUrl: string | undefined;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadFile(file);
+    }
+  }
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Replace 'upload_url' with your server endpoint URL
+    this.http
+      .post<any>('http://localhost:8080/api/user/uploadImage', formData)
+      .subscribe(
+        (response) => {
+          console.log('Upload successful!', response);
+          // Assuming the server responds with the URL of the uploaded image
+          if (response && response.url) {
+            this.imageUrl = response.url;
+            this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
+            console.log('http://localhost:8080/' + this.imageUrl);
+            const relativePath = this.imageUrl.replace(
+              'http://localhost:8080/',
+              ''
+            );
+
+            // Assuming 'product' is your product object and 'images' is an array property
+            this.product.images.push(relativePath);
+            this.product.images
+          }
+        },
+        (error) => {
+          console.error('Error occurred while uploading: ', error);
+          // Handle error, show an error message to the user
+        }
+      );
+  }
 }

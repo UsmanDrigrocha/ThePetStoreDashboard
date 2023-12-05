@@ -18,10 +18,11 @@
   <label for="animal">Animal:</label>
   <input type="text" id="animal" ngModel="product.animal" [value]="product.animal" name="animal" required>
 
-  <label for="images">Images:</label>
-  <input type="text" id="images" ngModel="product.images" [value]="product.images" name="images" required>
+  <label for="image">Images</label>
+  <input type="file" (change)="onFileSelected($event)" />
+  <img *ngIf="product.images" [src]="imageUrl" alt="Uploaded Image" id="uploadedImage"/>
 
-  <label for="categoryID">Category :</label>
+
   <label for="categoryID">Category :</label>
   <select name="categoryID" id="categoryID" ngModel="selectedCategoryID">
     <option *ngFor="let category of productCategories" [value]="category._id">

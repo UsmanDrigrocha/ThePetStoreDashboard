@@ -67,7 +67,7 @@ export class UpdateProductComponent {
   };
   onSubmit(e: Event, form: any) {
     e.preventDefault();
-    this.productObject.images[0] = form.images.value;
+    // this.productObject.images[0] = form.images.value;
     this.productObject.name = form.name.value;
     this.productObject.price = form.price.value;
     this.productObject.description = form.description.value;
@@ -125,7 +125,7 @@ export class UpdateProductComponent {
         this.product.size = data.findProduct.size;
         this.product.quantity = data.findProduct.quantity;
         this.product.animal = data.findProduct.animal;
-        this.product.images = data.findProduct.images[0];
+        // this.product.images = data.findProduct.images[0];
         this.product.coupon.code = data.findProduct.coupon.code;
         this.product.coupon.discountPercentage =
           data.findProduct.coupon.discountPercentage;
@@ -214,4 +214,53 @@ export class UpdateProductComponent {
       });
   }
   //
+
+  // ------ Upload Image  ------
+  imageUrl: string | undefined;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadFile(file);
+    }
+  }
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Replace 'upload_url' with your server endpoint URL
+    this.http
+      .post<any>('http://localhost:8080/api/user/uploadImage', formData)
+      .subscribe(
+        (response) => {
+          console.log('Upload successful!', response);
+          // Assuming the server responds with the URL of the uploaded image
+          if (response && response.url) {
+            this.imageUrl = response.url;
+            this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
+
+            console.log(this.imageUrl);
+            const relativePath = this.imageUrl.replace(
+              'http://localhost:8080/',
+              ''
+            );
+
+
+          //   { // category data 
+          //     "name": "Dog",
+          //     "image": "image-1698389189579-328864583.png"
+          //     // ,    "categoryID": "654b8acea51aa3d08b47057a" // ITS Parent ID --optional
+          // }
+
+            // Assuming 'product' is your product object and 'images' is an array property
+            this.productObject.images.push(relativePath);
+          }
+        },
+        (error) => {
+          console.error('Error occurred while uploading: ', error);
+          alert("Error Uploading Image")
+          // Handle error, show an error message to the user
+        }
+      );
+  }
 }

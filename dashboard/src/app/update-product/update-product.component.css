@@ -70,3 +70,7 @@ form textarea{
     max-height: 18rem !important;
 }
 
+
+#uploadedImage{
+    max-width: 100%;
+}
