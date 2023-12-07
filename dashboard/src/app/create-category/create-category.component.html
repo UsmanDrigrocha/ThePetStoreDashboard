@@ -1,15 +1,17 @@
 <form #form>
     <label for="categoryID">Category :</label>
-    <input type="text" id="category"  name="category" required>
-    <!-- <select name="categoryID" id="categoryID">
-        <option value="" disabled selected>Select a category</option>
+    <input type="text" id="category" name="category" required>
+    <select name="categoryID" id="categoryID">
+        <option value="" disabled selected>Select parent Category</option>
         <option *ngFor="let category of productCategories" [value]="category._id">
             {{ category.name }}
         </option>
-    </select> -->
+    </select>
 
-    <button>Create </button>
+    <label for="image">Images</label>
+    <input type="file" (change)="onFileSelected($event)" />
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" id="uploadedImage" />
 
-    <!-- <button type="submit" (click)="onSubmit($event , form)">Create Product</button> -->
+    <button type="submit" (click)="onSubmit($event , form)">Create Category</button>
 
 </form>
