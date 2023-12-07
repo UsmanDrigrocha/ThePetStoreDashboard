@@ -49,7 +49,10 @@
 
                 <tr *ngFor="let category of productCategories">
                     <td>{{category.name}}</td>
-                    <td> <i class="fas fa-trash-alt" (click)="deleteCategory(category._id)"></i></td>
+                    <td>
+                         <i class="fas fa-trash-alt" (click)="deleteCategory(category._id)"></i>
+                         <i class="fas fa-edit" (click)="redirectToCategoryEditPage(category._id)"></i>
+                        </td>
                 </tr>
 
 

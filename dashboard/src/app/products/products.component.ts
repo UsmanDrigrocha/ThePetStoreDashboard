@@ -84,6 +84,9 @@ export class ProductsComponent {
     this.router.navigate(['/update-product', productId]);
   }
 
+  redirectToCategoryEditPage(categoryId:string){
+    this.router.navigate(['/update-category',categoryId])
+  }
 
   productCategories: any[] = [];
 

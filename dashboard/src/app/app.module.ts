@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
     CreateProductComponent,
     UpdateProductComponent,
     CreateCategoryComponent,
+    UpdateCategoryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
