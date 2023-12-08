@@ -1,30 +1,21 @@
-<!-- <body>
-    <h3>Users</h3>
-    <div class="users">
-        <div class="user">
-            <li>Users</li>
-            <li>{{getJsonValue}}</li>
-        </div>
-    </div>
-
-    <div class="admins">
-        <li>Admin 1</li>
-    </div>
-</body> 
- -->
-
-
-
 <body>
-    <h3>Users</h3>
-    <div class="users">
-        <div class="user">
-            <li>1</li>
-            <li>2</li>
-        </div>
-    </div>
+    <div class="usersMainDiv">
+        <table border="1" style="border-collapse: collapse;">
+            <tr>
+                <th>User Email</th>
+                <th>Role</th>
+                <th>--</th>
+            </tr>
 
-    <div class="admins">
-        <li>Admin 1</li>
+            <tr *ngFor="let user of getJsonValue">
+                <ng-container *ngIf="user.role !== 'Super Admin' && user.isDeleted!==true">
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        <i class="fas fa-trash-alt" (click)="deleteUser(user._id)"></i>
+                    </td>
+                </ng-container>
+            </tr>
+        </table>
     </div>
 </body>
