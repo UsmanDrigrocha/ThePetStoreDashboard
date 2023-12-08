@@ -67,4 +67,8 @@ export class UsersComponent {
       );
     }
   }
+
+  redirectToCreateUserPage(){
+    this.router.navigate(['/create-user'])
+  }
 }

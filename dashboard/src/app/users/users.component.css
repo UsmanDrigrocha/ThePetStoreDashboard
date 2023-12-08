@@ -42,7 +42,7 @@ td i {
 }
 
 td i:hover {
-    background:  #4e657a;
+    background: #4e657a;
 }
 
 th {
@@ -64,13 +64,23 @@ th {
 }
 
 
-.create #createButton{
+.create #createButton {
     cursor: pointer;
     transition: .6s;
-    color: orange ;
+    color: orange;
 
 }
 
-.create #createButton:hover{
-   color: red;
+.create #createButton:hover {
+    color: red;
+}
+
+.icon i {
+    color: orange;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.icon i:hover {
+    color: red;
 }
