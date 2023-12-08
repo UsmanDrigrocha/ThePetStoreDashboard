@@ -12,6 +12,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderInfoComponent } from './order-info/order-info.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'update-category/:id', component: UpdateCategoryComponent, canActivate: [AuthGuard] },
   { path: 'create-user', component: CreateUserComponent, canActivate: [AuthGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'order-info/:id', component: OrderInfoComponent, canActivate: [AuthGuard] },
 
 ];
 

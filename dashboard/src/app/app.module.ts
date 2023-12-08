@@ -16,6 +16,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderInfoComponent } from './order-info/order-info.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { OrdersComponent } from './orders/orders.component';
     UpdateCategoryComponent,
     CreateUserComponent,
     OrdersComponent,
+    OrderInfoComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

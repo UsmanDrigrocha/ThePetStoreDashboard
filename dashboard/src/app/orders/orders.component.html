@@ -7,7 +7,7 @@
                 <th>Payment Status</th>
                 <th>Order Status</th>
             </tr>
-            <tr *ngFor="let order of Orders[0]?.order">
+            <tr *ngFor="let order of Orders[0]?.order" id="row" (click)="redirectToOrderInfo(order.productID)">
                 <td>{{ order.productID }}</td>
                 <td>{{ order.quantity }}</td>
                 <td>{{ order.paymentStatus }}</td>

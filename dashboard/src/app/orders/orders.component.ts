@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class OrdersComponent {
   Orders: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   ngOnInit() {
     this.getOrders();
@@ -34,7 +35,10 @@ export class OrdersComponent {
   }
 
   // test
-
+  redirectToOrderInfo(val:String){
+    console.log(val)
+    this.router.navigate(['/order-info',val])
+  }
   // 
 
 }
