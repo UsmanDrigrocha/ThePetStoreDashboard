@@ -76,10 +76,12 @@ app-create-user {
 app-orders body {
     background-color: #567086;
     height: 100vh;
-    display: flex;
+    /* display: flex; */
     /* max-width: 100%; */
     /* padding-left: 9rem; */
 }
 
-/* justify-content: center;
-align-items: center; */
+/* app-orders {
+    background-color: #567086;
+    height: 100vh; 
+} */

@@ -1,13 +1,21 @@
-<body>
-    <div class="orders">
-        <!-- <h1>This is Orders Page</h1>
-        <h1>This is Orders Page.......................</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> <h1>This is Orders Page</h1> -->
-        <div class="order">
-            <table>
-                <tr>
-                    <th>Order Status</th>
-                </tr>
-            </table>
-        </div>
+<div class="orders" *ngIf="Orders && Orders.length">
+    <div class="order">
+        <table>
+            <tr>
+                <th>Product ID</th>
+                <th>Quantity</th>
+                <th>Payment Status</th>
+                <th>Order Status</th>
+            </tr>
+            <tr *ngFor="let order of Orders[0]?.order">
+                <td>{{ order.productID }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.paymentStatus }}</td>
+                <td>{{ order.orderStatus }}</td>
+            </tr>
+        </table>
     </div>
-</body>
+</div>
+<div *ngIf="!Orders || !Orders.length">
+    <p>No orders available.</p>
+</div>
