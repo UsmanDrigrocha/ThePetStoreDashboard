@@ -1,7 +1,7 @@
 <body>
     <div class="productsMainDiv">
         <div class="products">
-            <table>
+            <table border="1" style="border-collapse: collapse;">
                 <th colspan="6">
                     <div class="headingProducts">Products</div>
                     <div class="create">
@@ -40,7 +40,7 @@
                 <span id="createButton" (click)="redirectToCreateCategoryPage()">Create Category <i
                         class="fas fa-edit"></i></span>
             </div>
-            <table border="1">
+            <table border="1" style="border-collapse: collapse;">
                 <th colspan="4">Categories</th>
                 <tr>
                     <th>Name</th>
@@ -50,9 +50,9 @@
                 <tr *ngFor="let category of productCategories">
                     <td>{{category.name}}</td>
                     <td>
-                         <i class="fas fa-trash-alt" (click)="deleteCategory(category._id)"></i>
-                         <i class="fas fa-edit" (click)="redirectToCategoryEditPage(category._id)"></i>
-                        </td>
+                        <i class="fas fa-trash-alt" (click)="deleteCategory(category._id)"></i>
+                        <i class="fas fa-edit" (click)="redirectToCategoryEditPage(category._id)"></i>
+                    </td>
                 </tr>
 
 
