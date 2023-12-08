@@ -72,3 +72,14 @@ app-create-user {
     align-items: center;
     height: 100vh;
 }
+
+app-orders body {
+    background-color: #567086;
+    height: 100vh;
+    display: flex;
+    /* max-width: 100%; */
+    /* padding-left: 9rem; */
+}
+
+/* justify-content: center;
+align-items: center; */
