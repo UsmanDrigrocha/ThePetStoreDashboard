@@ -1,4 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,10 +23,13 @@ export class UpdateCategoryComponent {
     this.route.params.subscribe((params) => {
       const categoryId = params['id'];
       this.categoryId = categoryId;
-      console.log(categoryId)
+      console.log(categoryId);
       // Now you have access to the product ID, you can fetch the corresponding product data for editing
       // Fetch data or perform necessary operations using this categoryId
       this.getProductCategories();
+      this.updateSelectedCategoryName();
+      this.showUpdatedValues(categoryId);
+      this.setImgURL();
     });
   }
 
@@ -31,45 +38,6 @@ export class UpdateCategoryComponent {
   categories = {
     images: [] as string[], // Explicitly defining as an array of strings
   };
-
-  imageUrl: any;
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.uploadFile(file);
-    }
-  }
-
-  uploadFile(file: File): any {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    this.http
-      .post<any>('http://localhost:8080/api/user/uploadImage', formData)
-      .subscribe(
-        (response) => {
-          console.log('Upload successful!', response);
-          if (response && response.url) {
-            this.imageUrl = response.url;
-            this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
-            console.log(this.imageUrl);
-
-            const relativePath = this.imageUrl.replace(
-              'http://localhost:8080/',
-              ''
-            );
-
-            // Assuming 'categories' is your product object and 'images' is an array property
-            this.categoryDetails.images.push(relativePath);
-          }
-        },
-        (error) => {
-          console.error('Error occurred while uploading: ', error);
-          // Handle error, show an error message to the user
-          // Avoid pushing the image URL in case of an error
-        }
-      );
-  }
 
   // --------------- Get Product Categories ------------------------
   getProductCategoriesURL =
@@ -106,12 +74,12 @@ export class UpdateCategoryComponent {
 
     console.log(this.categoryDetails);
 
-    this.createCategory(this.categoryDetails);
+    this.updateCategory(this.categoryDetails);
   }
 
   // ---------------- Update Category Function -------------------
 
-  createCategory(formData: any) {
+  updateCategory(formData: any) {
     const accessToken = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -120,7 +88,7 @@ export class UpdateCategoryComponent {
 
     this.http
       .put<any>(
-        'http://localhost:8080/api/admin/createCatagory',
+        `http://localhost:8080/api/admin/updateCategory/${this.categoryId}`,
         {
           categoryID: formData.categoryID,
           name: formData.name,
@@ -130,13 +98,116 @@ export class UpdateCategoryComponent {
       )
       .subscribe(
         (response) => {
-          console.log('Category Created', response);
-          alert('Category Created Successfully !');
+          console.log('Category updated', response);
+          alert('Category updated Successfully !');
           this.router.navigate(['/products']);
           // Assuming the server responds with the URL of the uploaded image
         },
         (error) => {
           console.error('Error occurred while uploading: ', error);
+          // Handle error, show an error message to the user
+        }
+      );
+  }
+
+  selectedCategoryID = this.categoryId;
+  selectedCategoryName = '';
+  updateSelectedCategoryName() {
+    const selectedCategory = this.productCategories.find(
+      (category) => category._id === this.selectedCategoryID
+    );
+    if (selectedCategory) {
+      this.selectedCategoryName = selectedCategory.name;
+      console.log(selectedCategory.name);
+    } else {
+      this.selectedCategoryName = ''; // Handle if category is not found
+    }
+  }
+
+  // Get Category Values
+  categoryValues = {
+    name: '',
+    image: '',
+  };
+  showUpdatedValues(val: string) {
+    const accessToken = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    this.http
+      .get<any>(
+        `http://localhost:8080/api/admin/getOneCategory/${this.categoryId}`,
+        { headers }
+      )
+      .subscribe({
+        next: (data) => {
+          console.log('Category Details:', data);
+          this.categoryValues.name = data.data.name;
+          this.categoryValues.image = data.data.image;
+          console.log(this.categoryValues);
+          this.relativePath=data.data.image;
+          console.log('relaive path',this.relativePath)
+        },
+        error: (error) => {
+          console.error('Error getting category values:', error);
+
+          if (error instanceof HttpErrorResponse) {
+            console.error('Full error response:', error);
+          }
+        },
+        complete: () => {
+          // this.router.navigate(['/products']);
+          // console.log('Product Updated !');
+        },
+      });
+  }
+
+
+  //  Upload Image 
+  imageUrl: string | undefined;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadFile(file);
+    }
+  }
+
+  // 
+  relativePath='';
+  setImgURL(){
+    console.log(this.relativePath,'<><><>><><><><>')
+  }
+  // 
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Replace 'upload_url' with your server endpoint URL
+    this.http
+      .post<any>('http://localhost:8080/api/user/uploadImage', formData)
+      .subscribe(
+        (response) => {
+          console.log('Upload successful!', response);
+          // Assuming the server responds with the URL of the uploaded image
+          if (response && response.url) {
+            this.imageUrl = response.url;
+            this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
+
+            console.log(this.imageUrl);
+            const relativePath = this.imageUrl.replace(
+              'http://localhost:8080/',
+              ''
+            );
+            this.categoryValues.image=(relativePath);
+          }
+        },
+        (error) => {
+          console.error('Error occurred while uploading: ', error);
+          alert('Error Uploading Image');
           // Handle error, show an error message to the user
         }
       );
