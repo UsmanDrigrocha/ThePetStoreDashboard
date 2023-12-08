@@ -1,4 +1,20 @@
-body{
+body {
     background-color: #567086;
     padding: 1rem;
+}
+
+.links {
+    padding-left: 2rem;
+}
+
+.dashboard a {
+    cursor: pointer;
+    font-weight: bold;
+    color: orange;
+    transition: .6s;
+    text-decoration: none;
+}
+
+.dashboard a:hover {
+    color: red;
 }
