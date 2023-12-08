@@ -64,3 +64,11 @@ app-update-category {
     align-items: center;
     height: 100vh;
 }
+
+app-create-user {
+    display: flex;
+    background-color: #567086;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

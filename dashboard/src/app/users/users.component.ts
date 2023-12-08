@@ -56,16 +56,15 @@ export class UsersComponent {
       return this.http.delete(url, { headers }).subscribe(
         (response) => {
           alert('User Deleted Successfully !');
-          // window.location.reload();
+          window.location.reload();
           return;
         },
         (error) => {
           alert('Error Deleting User');
-          // window.location.reload();
+          window.location.reload();
           console.log(error.message)
         }
       );
     }
   }
-  // --------------------------- X --------------------
 }

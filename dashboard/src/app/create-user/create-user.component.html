@@ -1,0 +1,17 @@
+<form #form>
+    <label for="email">User Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="userRole">User Role</label>
+    <select name="userRole" id="userRole">
+        <option value="" disabled selected>Select User Role</option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button type="submit">Create User</button>
+
+</form>

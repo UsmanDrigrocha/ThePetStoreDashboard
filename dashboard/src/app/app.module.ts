@@ -14,6 +14,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UpdateCategoryComponent } from './update-category/update-category.compo
     UpdateProductComponent,
     CreateCategoryComponent,
     UpdateCategoryComponent,
+    CreateUserComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
