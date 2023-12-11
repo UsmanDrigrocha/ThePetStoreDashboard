@@ -1,4 +1,4 @@
-<div class="orders" *ngIf="Orders && Orders.length">
+<!-- <div class="orders" *ngIf="Orders && Orders.length">
     <div class="order">
         <table>
             <tr>
@@ -18,7 +18,35 @@
 </div>
 <div *ngIf="!Orders || !Orders.length">
     <p>No orders available.</p>
-</div>
+</div> -->
 
 
 <!--  -->
+
+<div *ngIf="Orders && Orders.length">
+    <div class="orders" *ngFor="let userOrder of Orders">
+        <h2>User ID: {{ userOrder.userID }}</h2>
+        <div class="order">
+            <table>
+                <tr>
+                    <th>User ID</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                    <th>Payment Status</th>
+                    <th>Order Status</th>
+                </tr>
+                <tr *ngFor="let order of userOrder.order" id="row" (click)="redirectToOrderInfo(order.productID)">
+                    <td>{{ userOrder.userID }}</td>
+                    <td>{{ order.productID }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.paymentStatus }}</td>
+                    <td>{{ order.orderStatus }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf="!Orders || !Orders.length">
+    <p>No orders available.</p>
+</div>
+
