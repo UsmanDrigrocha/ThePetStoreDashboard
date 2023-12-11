@@ -16,7 +16,7 @@
             <td>{{ productData.email }}</td>
 
             <td>
-                <select name="Payment" id="payment">
+                <select name="Payment" id="payment" #paymentStatus >
                     <option value="">{{ productData.paymentStatus }}</option>
                     <option value="delivered">Delivered</option>
                     <option value="pending">Pending</option>
@@ -26,7 +26,7 @@
             </td>
 
             <td>
-                <select name="OrderStatus" id="orderStatus">
+                <select name="OrderStatus" id="orderStatus" #orderStatus>
                     <option value="">{{ productData.orderStatus }}</option>
                     <option value="delivered">Delivered</option>
                     <option value="pending">Pending</option>
@@ -37,6 +37,6 @@
         </tr>
     </table>
 
-    <button>Update</button>
+    <button (click)="updateStatus(paymentStatus , orderStatus)">Update</button>
 </body>
 

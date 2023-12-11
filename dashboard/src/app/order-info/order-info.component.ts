@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-order-info',
@@ -19,6 +20,7 @@ export class OrderInfoComponent implements OnInit {
   productDetails: any = {};
   userDetails: any = {};
   selectedPaymentStatus: string = '';
+  selectedOrderStatus:string=''
 
   productData: any = {
     name: '',
@@ -41,10 +43,7 @@ export class OrderInfoComponent implements OnInit {
     });
   }
 
-  onPaymentStatusChange(event: Event) {
-    this.selectedPaymentStatus = (event.target as HTMLSelectElement).value;
-    // Additional logic based on the selected value if needed
-  }
+
 
   getProductPrice() {
     const accessToken = localStorage.getItem('token');
@@ -150,4 +149,20 @@ export class OrderInfoComponent implements OnInit {
         }
       });
   }
+  updateStatus(pay: any, order: any) {
+    console.log('Updated Payment Status:', pay.value);
+    console.log('Updated Order Status:', order.value);
+
+
+  }
+
+  // onPaymentStatusChange(event: any) {
+  //   this.selectedPaymentStatus = event.target.value;
+  // }
+
+  // onOrderStatusChange(event: any) {
+  //   this.selectedOrderStatus = event.target.value;
+  // }
+
+
 }
