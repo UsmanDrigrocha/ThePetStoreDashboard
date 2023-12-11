@@ -60,7 +60,7 @@ export class OrderInfoComponent {
             name: data.findProduct.name,
             price: data.findProduct.price,
           };
-          console.log(data);
+          console.log('>>>>>',this.productData);
         } catch (error) {
           console.log('Error Getting Order Info !');
         }
@@ -179,6 +179,10 @@ export class OrderInfoComponent {
 
               // Calculate total price for the specific product
               const productQuantity = productDetails.quantity;
+              const orderStatus=productDetails.orderStatus;
+              const paymentStatus=productDetails.paymentStatus;
+              this.productData.orderStatus=orderStatus;
+              this.productData.paymentStatus=paymentStatus
               const productActualPrice = this.productData.price;
               const totalPrice = productQuantity * productActualPrice;
 
