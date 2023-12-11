@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { retry } from 'rxjs';
 
 @Component({
   selector: 'app-order-info',
@@ -20,7 +21,7 @@ export class OrderInfoComponent implements OnInit {
   productDetails: any = {};
   userDetails: any = {};
   selectedPaymentStatus: string = '';
-  selectedOrderStatus:string=''
+  selectedOrderStatus: string = '';
 
   productData: any = {
     name: '',
@@ -42,8 +43,6 @@ export class OrderInfoComponent implements OnInit {
       this.getOrders();
     });
   }
-
-
 
   getProductPrice() {
     const accessToken = localStorage.getItem('token');
@@ -153,7 +152,39 @@ export class OrderInfoComponent implements OnInit {
     console.log('Updated Payment Status:', pay.value);
     console.log('Updated Order Status:', order.value);
 
+    if (order.value === '' && pay.value === '') {
+      return alert('Already set to default !');
+    }
 
+    const accessToken = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    const requestBody = {
+      productID: this.productId,
+      paymentStatus: pay.value,
+      orderStatus: order.value,
+      id: this.userDetails._id,
+    };
+
+
+    this.http
+      .put(
+        'http://localhost:8080/api/admin/updateOrderStatus/',
+        requestBody, // Pass the request body here
+        { headers } // Pass the headers object separately
+      )
+      .subscribe((res) => {
+        try {
+          console.log(res);
+          alert("Order Status Updated !");
+        } catch (error) {
+          alert('Error Updating !');
+        }
+      });
   }
 
   // onPaymentStatusChange(event: any) {
@@ -163,6 +194,4 @@ export class OrderInfoComponent implements OnInit {
   // onOrderStatusChange(event: any) {
   //   this.selectedOrderStatus = event.target.value;
   // }
-
-
 }
