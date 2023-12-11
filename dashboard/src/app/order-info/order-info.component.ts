@@ -186,12 +186,4 @@ export class OrderInfoComponent implements OnInit {
         }
       });
   }
-
-  // onPaymentStatusChange(event: any) {
-  //   this.selectedPaymentStatus = event.target.value;
-  // }
-
-  // onOrderStatusChange(event: any) {
-  //   this.selectedOrderStatus = event.target.value;
-  // }
 }
