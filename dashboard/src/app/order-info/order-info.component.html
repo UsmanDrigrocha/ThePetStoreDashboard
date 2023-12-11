@@ -1,4 +1,5 @@
 <body>
+    {{productData.paymentStatus}}
     <h1>Order-Info : Product @ {{productId }}</h1>
     <table border="2">
         <tr>
@@ -16,12 +17,14 @@
 
             <td>
                 <select name="Payment" id="payment">
+                    <option value="">{{productData.paymentStatus}}</option>
                     <option value="delivered">Delivered</option>
                     <option value="pending">Pending</option>
                     <option value="refunded">Refunded</option>
                     <option value="rejected">Rejected</option>
                 </select>
             </td>
+
 
             <td>
                 <select name="product" id="product">
@@ -33,3 +36,5 @@
         </tr>
     </table>
 </body>
+
+
