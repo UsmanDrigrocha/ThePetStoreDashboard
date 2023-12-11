@@ -1,6 +1,6 @@
-<body>
-    {{productData.paymentStatus}}
-    <h1>Order-Info : Product @ {{productId }}</h1>
+ <body>
+    {{ productData.paymentStatus }}
+    <h1>Order-Info : Product @ {{ productId }}</h1>
     <table border="2">
         <tr>
             <th>Name</th>
@@ -11,13 +11,13 @@
         </tr>
 
         <tr>
-            <td>{{productData.name}}</td>
-            <td>{{orderData.price}} Usd</td>
-            <td>{{productData.email}}</td>
+            <td>{{ productData.name }}</td>
+            <td>{{ orderData.price }} Usd</td>
+            <td>{{ productData.email }}</td>
 
             <td>
                 <select name="Payment" id="payment">
-                    <option value="">{{productData.paymentStatus}}</option>
+                    <option value="">{{ productData.paymentStatus }}</option>
                     <option value="delivered">Delivered</option>
                     <option value="pending">Pending</option>
                     <option value="refunded">Refunded</option>
@@ -25,16 +25,18 @@
                 </select>
             </td>
 
-
             <td>
-                <select name="product" id="product">
+                <select name="OrderStatus" id="orderStatus">
+                    <option value="">{{ productData.orderStatus }}</option>
                     <option value="delivered">Delivered</option>
                     <option value="pending">Pending</option>
                     <option value="returned">Returned</option>
+                    <!-- Add other relevant options for order status -->
                 </select>
             </td>
         </tr>
     </table>
-</body>
 
+    <button>Update</button>
+</body>
 
