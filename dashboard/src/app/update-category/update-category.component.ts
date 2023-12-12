@@ -29,7 +29,8 @@ export class UpdateCategoryComponent {
       this.getProductCategories();
       this.updateSelectedCategoryName();
       this.showUpdatedValues(categoryId);
-      this.setImgURL();
+      this.showUpdatedValues("test");
+      this.updateImgValue()
     });
   }
 
@@ -149,7 +150,8 @@ export class UpdateCategoryComponent {
           this.categoryValues.image = data.data.image;
           console.log(this.categoryValues);
           this.relativePath=data.data.image;
-          console.log('relaive path',this.relativePath)
+          console.log('relaive path',data.data.image)
+          this.imageUrl="http://localhost:8080/"+data.data.image
         },
         error: (error) => {
           console.error('Error getting category values:', error);
@@ -166,6 +168,11 @@ export class UpdateCategoryComponent {
   }
 
 
+  updateImgValue(){
+    console.log("Ipt runned")
+    console.log(this.imageUrl)
+  }
+
   //  Upload Image 
   imageUrl: string | undefined;
   onFileSelected(event: any) {
@@ -177,9 +184,7 @@ export class UpdateCategoryComponent {
 
   // 
   relativePath='';
-  setImgURL(){
-    console.log(this.relativePath,'<><><>><><><><>')
-  }
+  
   // 
 
   uploadFile(file: File) {
