@@ -3,7 +3,7 @@
         <div class="products">
             <table border="1" style="border-collapse: collapse;">
                 <th colspan="6">
-                    <div class="headingProducts">Products</div>
+                    <span>Products</span>
                     <div class="create">
                         <span id="createButton" (click)="redirectToCreatePage()">Create Product <i
                                 class="fas fa-edit"></i></span>
@@ -36,12 +36,14 @@
 
 
         <div class="productsCategories">
-            <div class="create">
-                <span id="createButton" (click)="redirectToCreateCategoryPage()">Create Category <i
-                        class="fas fa-edit"></i></span>
-            </div>
             <table border="1" style="border-collapse: collapse;">
-                <th colspan="4">Categories</th>
+                <th colspan="6">
+                    <span>Categories</span>
+                    <div class="create">
+                        <span id="createButton" (click)="redirectToCreateCategoryPage()">Create Category <i
+                                class="fas fa-edit"></i></span>
+                    </div>
+                </th>
                 <tr>
                     <th>Name</th>
                     <th>Delete</th>

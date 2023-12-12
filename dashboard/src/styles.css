@@ -15,6 +15,7 @@ body {
     height: 100vh;
     padding-top: 3.3rem;
     overflow-x: hidden;
+    background-color: #567086;
 }
 
 app-login {
@@ -81,3 +82,7 @@ app-orders body {
     /* padding-left: 9rem; */
 }
 
+
+app-root{
+    background-color: #567086;
+}

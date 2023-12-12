@@ -1,3 +1,8 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #567086 !important;
+}
+
 .orders-container {
     display: flex;
     justify-content: center;
@@ -15,17 +20,17 @@ table {
 
 th,
 td {
-    border: 1px solid #ddd;
+    border: 1px solid #4e729e;
     padding: 8px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #4e729e;
 }
 
 .order-row:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #4e729e;
 }
 
 .no-orders {
@@ -39,7 +44,7 @@ th {
 }
 
 .order-row:hover {
-    background-color: #e0e0e0;
+    background-color: #4e729e;
 }
 
 #row{

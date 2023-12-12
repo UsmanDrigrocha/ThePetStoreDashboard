@@ -1,86 +1,53 @@
+/* Body Styles */
 body {
+    font-family: Arial, sans-serif;
     background-color: #567086;
-    padding: 1rem;
+    color: #567086;
+    padding: 20px;
 }
 
-
-.productsMainDiv {
-    display: flex;
-    justify-content: space-around;
+/* Main Users Div */
+.usersMainDiv {
+    margin: 20px auto;
+    max-width: 600px;
 }
 
+/* Table Styles */
 table {
-    /* border-collapse: collapse; */
     width: 100%;
+    border-collapse: collapse;
 }
 
-th div {
-    display: flex;
-    justify-content: center;
-    flex-direction: row !important;
-    align-items: center;
-}
-
-th,
-td {
-    border: 1px solid black;
-    color: white;
-    text-align: left;
+th, td {
+    border: 1px solid #567086;
     padding: 8px;
-}
-
-td i {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    padding: 6px;
-    border-radius: 50%;
-    height: 3rem;
-    width: 3rem;
-    align-items: center;
-    transition: .6s;
-}
-
-td i:hover {
-    background: #4e657a;
+    text-align: left;
 }
 
 th {
-    background-color: #4e657a;
+    background-color: #567086;
+    color: white;
 }
 
-/* @media(max-width:1030px) {
-    .productsMainDiv {
-        flex-direction: column;
-        gap: 4rem;
-    }
-} */
-
-@media (max-width: 1030px) {
-    .productsMainDiv {
-        flex-direction: column;
-        gap: 4rem;
-    }
+tr:nth-child(even) {
+    background-color: #567086;
+    color: white; /* Changing text color for better readability */
 }
 
+/* Icons Styles */
+.icon {
+    text-align: right;
+}
 
-.create #createButton {
+.icon i{
     cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+
+.icon{
+    padding: 7px;
     transition: .6s;
-    color: orange;
-
-}
-
-.create #createButton:hover {
-    color: red;
-}
-
-.icon i {
-    color: orange;
-    cursor: pointer;
-    transition: .6s;
-}
-
-.icon i:hover {
-    color: red;
+    background-color: orange;
 }

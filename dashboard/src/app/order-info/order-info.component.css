@@ -1,0 +1,82 @@
+/* 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #567086;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #567086;
+}
+
+tr:nth-child(even) {
+    background-color: #567086;
+}
+
+select {
+    padding: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #567086;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+} */
+
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 2px solid #567086;
+    /* Changed border thickness */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #567086;
+    color: white;
+    /* Added text color for better visibility */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Adjusted even row color for contrast */
+}
+
+select {
+    padding: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
