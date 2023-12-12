@@ -86,3 +86,8 @@ app-orders body {
 app-root{
     background-color: #567086;
 }
+
+textarea#description {
+    padding: 5px;
+    color: white;
+}
