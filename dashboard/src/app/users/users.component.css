@@ -18,7 +18,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #567086;
     padding: 8px;
     text-align: left;
@@ -29,9 +30,9 @@ th {
     color: white;
 }
 
-tr:nth-child(even) {
+tr {
     background-color: #567086;
-    color: white; /* Changing text color for better readability */
+    color: white;
 }
 
 /* Icons Styles */
@@ -39,15 +40,30 @@ tr:nth-child(even) {
     text-align: right;
 }
 
-.icon i{
+.icon i {
     cursor: pointer;
     color: black;
     font-weight: bold;
+    transition: .6s;
+}
+
+.icon i:hover {
+    transform: scale(0.6);
 }
 
 
-.icon{
+.icon {
     padding: 7px;
     transition: .6s;
     background-color: orange;
+}
+
+td .fa-trash-alt {
+    cursor: pointer;
+    transition: .6s;
+}
+
+td .fa-trash-alt:hover {
+    color: black;
+    transform: scale(1.3);
 }
