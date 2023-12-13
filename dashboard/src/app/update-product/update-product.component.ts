@@ -29,8 +29,6 @@ export class UpdateProductComponent {
       this.productId = productId;
       this.getProductValues();
       this.getProductCategories();
-      // Now you have access to the product ID, you can fetch the corresponding product data for editing
-      // Fetch data or perform necessary operations using this productId
     });
   }
 
@@ -213,7 +211,6 @@ export class UpdateProductComponent {
         },
       });
   }
-  //
 
   // ------ Upload Image  ------
   imageUrl: string | undefined;
@@ -245,20 +242,12 @@ export class UpdateProductComponent {
               ''
             );
 
-
-          //   { // category data 
-          //     "name": "Dog",
-          //     "image": "image-1698389189579-328864583.png"
-          //     // ,    "categoryID": "654b8acea51aa3d08b47057a" // ITS Parent ID --optional
-          // }
-
-            // Assuming 'product' is your product object and 'images' is an array property
             this.productObject.images.push(relativePath);
           }
         },
         (error) => {
           console.error('Error occurred while uploading: ', error);
-          alert("Error Uploading Image")
+          alert('Error Uploading Image');
           // Handle error, show an error message to the user
         }
       );
