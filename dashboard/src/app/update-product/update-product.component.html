@@ -23,8 +23,10 @@
   <img [src]="oldImgURL" alt="Uploaded Image" id="uploadedImage"/>
 
 
+
   <label for="categoryID">Category :</label>
   <select name="categoryID" id="categoryID" ngModel="selectedCategoryID">
+  <option value="">{{selectedCategoryName}}</option>
     <option *ngFor="let category of productCategories" [value]="category._id">
       {{ category.name }}
     </option>

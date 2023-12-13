@@ -16,10 +16,7 @@ export class UpdateProductComponent {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.selectedCategoryID = this.product.categoryID;
-    this.updateSelectedCategoryName();
-  }
+  ) {}
   productId = '';
 
   ngOnInit() {
@@ -29,7 +26,9 @@ export class UpdateProductComponent {
       this.productId = productId;
       this.getProductValues();
       this.getProductCategories();
+      this.updateSelectedCategoryName("val");
       this.fixImgURL();
+      // this.updateSelectedCategoryName();
     });
   }
 
@@ -133,11 +132,15 @@ export class UpdateProductComponent {
         this.product.coupon.code = data.findProduct.coupon.code;
         this.product.coupon.discountPercentage =
           data.findProduct.coupon.discountPercentage;
+        this.selectedCategoryID = data.findProduct.categoryID;
+        // console.log(this.selectedCategoryID=this.selectedCategoryID, 'cooming form prod');
+        this.updateSelectedCategoryName(this.selectedCategoryID);
+
 
         const dateString = data.findProduct.coupon.expirationDate;
         const date = new Date(dateString);
         this.oldImgURL = data.findProduct.images[0];
-        this.oldImgURL='http://localhost:8080/'+this.oldImgURL
+        this.oldImgURL = 'http://localhost:8080/' + this.oldImgURL;
 
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 to month since it's zero-based, and padding with '0'
@@ -176,12 +179,24 @@ export class UpdateProductComponent {
 
   // Assuming productCategories is an array of category objects
 
-  updateSelectedCategoryName() {
-    const selectedCategory = this.productCategories.find(
-      (category) => category._id === this.selectedCategoryID
-    );
+  // updateSelectedCategoryName(val:any) {
+  //   const selectedCategory = this.productCategories.find(
+  //     (category) => category._id === this.selectedCategoryID
+  //   );
+  //   if (selectedCategory) {
+  //     this.selectedCategoryName = selectedCategory.name;
+  //   } else {
+  //     this.selectedCategoryName = ''; // Handle if category is not found
+  //   }
+  // }
+
+
+
+  updateSelectedCategoryName(categoryID: string) {
+    const selectedCategory = this.productCategories.find((category) => category._id === categoryID);
     if (selectedCategory) {
       this.selectedCategoryName = selectedCategory.name;
+      console.log(this.selectedCategoryName)
     } else {
       this.selectedCategoryName = ''; // Handle if category is not found
     }
@@ -245,15 +260,13 @@ export class UpdateProductComponent {
             this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
 
             console.log(this.imageUrl);
-            this.oldImgURL=this.imageUrl
+            this.oldImgURL = this.imageUrl;
             const relativePath = this.imageUrl.replace(
               'http://localhost:8080/',
               ''
             );
 
-              
             this.productObject.images.push(relativePath);
-              
           }
         },
         (error) => {
