@@ -29,6 +29,7 @@ export class UpdateProductComponent {
       this.productId = productId;
       this.getProductValues();
       this.getProductCategories();
+      this.fixImgURL();
     });
   }
 
@@ -101,6 +102,11 @@ export class UpdateProductComponent {
     }
   }
 
+  oldImgURL = '';
+  fixImgURL() {
+    console.log(this.oldImgURL);
+  }
+
   getProductValues() {
     const accessToken = localStorage.getItem('token');
 
@@ -130,6 +136,8 @@ export class UpdateProductComponent {
 
         const dateString = data.findProduct.coupon.expirationDate;
         const date = new Date(dateString);
+        this.oldImgURL = data.findProduct.images[0];
+        this.oldImgURL='http://localhost:8080/'+this.oldImgURL
 
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 to month since it's zero-based, and padding with '0'
@@ -237,12 +245,15 @@ export class UpdateProductComponent {
             this.imageUrl = 'http://localhost:8080/' + this.imageUrl;
 
             console.log(this.imageUrl);
+            this.oldImgURL=this.imageUrl
             const relativePath = this.imageUrl.replace(
               'http://localhost:8080/',
               ''
             );
 
+              
             this.productObject.images.push(relativePath);
+              
           }
         },
         (error) => {

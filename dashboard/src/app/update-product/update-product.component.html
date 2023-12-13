@@ -20,7 +20,7 @@
 
   <label for="image">Images</label>
   <input type="file" (change)="onFileSelected($event)" />
-  <img *ngIf="product.images" [src]="imageUrl" alt="Uploaded Image" id="uploadedImage"/>
+  <img [src]="oldImgURL" alt="Uploaded Image" id="uploadedImage"/>
 
 
   <label for="categoryID">Category :</label>
