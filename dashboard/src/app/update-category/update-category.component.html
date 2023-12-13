@@ -2,6 +2,7 @@
     <label for="categoryID">Category :</label>
     <input type="text" id="category" name="category" required [value]="categoryValues.name">
     <select name="categoryID" id="categoryID" ngModel="selectedCategoryID">
+        <option value="" selected>{{categoryValues.name}}</option>
         <option *ngFor="let category of productCategories" [value]="category._id">
             {{ category.name }}
         </option>
@@ -10,7 +11,7 @@
     <label for="image">Images</label>
     <input type="file" (change)="onFileSelected($event)" />
     <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" id="uploadedImage" />
-  
+
 
     <button type="submit" (click)="onSubmit($event , form)">Update Category</button>
 

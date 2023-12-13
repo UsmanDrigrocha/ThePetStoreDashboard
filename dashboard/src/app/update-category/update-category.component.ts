@@ -27,7 +27,7 @@ export class UpdateCategoryComponent {
       // Now you have access to the product ID, you can fetch the corresponding product data for editing
       // Fetch data or perform necessary operations using this categoryId
       this.getProductCategories();
-      this.updateSelectedCategoryName();
+      this.updateSelectedCategoryName("");
       this.showUpdatedValues(categoryId);
       this.showUpdatedValues("test");
       this.updateImgValue()
@@ -113,13 +113,10 @@ export class UpdateCategoryComponent {
 
   selectedCategoryID = this.categoryId;
   selectedCategoryName = '';
-  updateSelectedCategoryName() {
-    const selectedCategory = this.productCategories.find(
-      (category) => category._id === this.selectedCategoryID
-    );
+  updateSelectedCategoryName(categoryID: string) {
+    const selectedCategory = this.productCategories.find((category) => category._id === categoryID);
     if (selectedCategory) {
       this.selectedCategoryName = selectedCategory.name;
-      console.log(selectedCategory.name);
     } else {
       this.selectedCategoryName = ''; // Handle if category is not found
     }
