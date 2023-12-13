@@ -1,6 +1,7 @@
 <form #form>
-    <label for="categoryID">Category :</label>
+    <label for="categoryID">Category Name</label>
     <input type="text" id="category" name="category" required>
+    <label for="categoryID">Parent Category</label>
     <select name="categoryID" id="categoryID">
         <option value="" disabled selected>Select parent Category</option>
         <option *ngFor="let category of productCategories" [value]="category._id">
